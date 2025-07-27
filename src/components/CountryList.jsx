@@ -11,7 +11,7 @@ const CountryList = ({ countries, darkMode, onCountryClick }) => {
                         darkMode={darkMode}
                         onCountryClick={onCountryClick}
                     />
-                ))
+                )) 
             ) : (
                 <p className={`col-span-full text-center ${darkMode ? 'text-gray-400' : 'text-[hsl(0,0%,52%)]'}`}>
                     No countries found matching your criteria.
