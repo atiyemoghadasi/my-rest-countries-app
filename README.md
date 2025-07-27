@@ -1,12 +1,21 @@
-# React + Vite
+REST Countries App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive web application built with React and Tailwind CSS, featuring country data fetched from a local JSON file (simulating an external API) and utilizing Firebase for basic backend functionalities like anonymous authentication. This project allows users to browse, search, and filter countries, and view detailed information for each.
 
-Currently, two official plugins are available:
+Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-   View All Countries: See a comprehensive list of all countries on the homepage.
+-   Search Functionality: Easily find countries by their name using the integrated search bar.
+-   Region Filtering: Filter countries by continent (e.g., Africa, Asia, Europe, etc.).
+-   Country Details: Click on any country card to navigate to a dedicated detail page with more information.
+-   Border Countries Navigation: Explore neighboring countries directly from the detail page.
+-   Dark/Light Mode Toggle: Switch between light and dark color schemes for a personalized Browse experience.
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Technologies Used
+
+-   React,
+-   Vite,
+-   Tailwind CSS,
+-   HTML5 & CSS3,
+-   JavaScript (ES6+)
