@@ -4,13 +4,9 @@ import SearchAndFilter from './components/SearchAndFilter';
 import CountryList from './components/CountryList';
 import CountryDetail from './components/CountryDetail';
 import LoadingAndError from './components/LoadingAndError';
-import { initializeApp, getApps, getApp } from 'firebase/app';
-import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
+
 
 function App() {
-    const [firebaseInitialized, setFirebaseInitialized] = useState(false);
-    const [userId, setUserId] = useState(null);
     const [countries, setCountries] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -19,53 +15,7 @@ function App() {
     const [selectedRegion, setSelectedRegion] = useState('');
     const [selectedCountryAlpha3Code, setSelectedCountryAlpha3Code] = useState(null); // State for selected country
 
-    // Firebase Initialization
-    useEffect(() => {
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
 
-        let app;
-        if (!getApps().length) {
-            if (Object.keys(firebaseConfig).length > 0) {
-                app = initializeApp(firebaseConfig);
-            } else {
-                console.warn("Firebase config not found. Running without Firebase features.");
-                setFirebaseInitialized(true);
-                setUserId(crypto.randomUUID());
-                return;
-            }
-        } else {
-            app = getApp();
-        }
-
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        const signIn = async () => {
-            try {
-                if (typeof __initial_auth_token !== 'undefined') {
-                    await signInWithCustomToken(auth, __initial_auth_token);
-                } else {
-                    await signInAnonymously(auth);
-                }
-            } catch (error) {
-                console.error("Firebase authentication error:", error);
-            }
-        };
-
-        signIn();
-
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setUserId(user.uid);
-            } else {
-                setUserId(crypto.randomUUID());
-            }
-            setFirebaseInitialized(true);
-        });
-
-        return () => unsubscribe();
-    }, []);
 
     // Fetch countries data from data.json
     useEffect(() => {
@@ -86,10 +36,8 @@ function App() {
             }
         };
 
-        if (firebaseInitialized) {
-            loadCountries();
-        }
-    }, [firebaseInitialized]);
+        loadCountries();
+    }, []);
 
     // Toggle dark mode
     const toggleDarkMode = () => {
@@ -146,7 +94,7 @@ function App() {
         setSelectedCountryAlpha3Code(null);
     };
 
-    if (!firebaseInitialized || loading || error) {
+    if (loading || error) {
         return <LoadingAndError loading={loading} error={error} darkMode={darkMode} />;
     }
 
