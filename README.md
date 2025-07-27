@@ -1,6 +1,6 @@
 REST Countries App
 
-A responsive web application built with React and Tailwind CSS, featuring country data fetched from a local JSON file (simulating an external API) and utilizing Firebase for basic backend functionalities like anonymous authentication. This project allows users to browse, search, and filter countries, and view detailed information for each.
+A responsive web application built with React and Tailwind CSS, featuring country data fetched from a local JSON file (simulating an external API). This project allows users to browse, search, and filter countries, and view detailed information for each.
 
 Features
 
