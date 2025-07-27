@@ -1,8 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
+@theme {
+    --font-display: "Nunito Sans";
+}
 
 body {
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: var(--font-display);
 }
